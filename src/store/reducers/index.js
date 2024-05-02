@@ -15,22 +15,22 @@ export default function reducer(state = initialState, action) {
 
     case ADD_TO_FAVS:
       const currentMovie = state.movies[state.sira];
+      console.log(currentMovie);
       return {
         ...state,
         favMovies: [...state.favMovies, currentMovie],
         sira: state.sira + 1,
-        movies: state.movies.filter((movie) => movie.id != currentMovie),
+        movies: state.movies.filter((movie) => movie.id !== currentMovie.id),
       };
 
     case DELETE_FROM_FAVS:
       const updatedFavMovies = state.favMovies.filter(
-        (movie) => movie.id !== action.payload.id
+        (movie) => movie.id !== action.payload
       );
       return {
         ...state,
         favMovies: updatedFavMovies,
       };
-
     case PREVIOUS_MOVIE:
       return { ...state, sira: state.sira - 1 };
 

@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { deleteFromFavs } from '../store/actions/index.js';
 
 export default function FavMovie({ title, id }) {
   const dispatch = useDispatch();
@@ -11,9 +12,9 @@ export default function FavMovie({ title, id }) {
       <div className="pr-4 flex-1">{title}</div>
       <button
         onClick={favoridenCikart}
-        className="px-3 py-2 block text-sm rounded bg-rose-700 text-white opacity-30 group-hover:opacity-100"
+        className="select-none px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white"
       >
-        Listemden Çıkar
+        Listemden çıkart
       </button>
     </div>
   );

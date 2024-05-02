@@ -9,6 +9,7 @@ import {
   nextMovie,
   previousMovie,
 } from './store/actions/index.js';
+import { movies } from './data.js';
 
 function App() {
   const sira = useSelector((store) => store.sira);
@@ -22,7 +23,7 @@ function App() {
     dispatch(addToFavs());
   }
   function favoridenCikart() {
-    dispatch(deleteFromFavs());
+    dispatch(deleteFromFavs(id));
   }
   function oncekiFilm() {
     dispatch(previousMovie());
@@ -52,18 +53,22 @@ function App() {
           <Movie sira={sira} />
 
           <div className="flex gap-3 justify-end py-3">
-            <button
-              onClick={oncekiFilm}
-              className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
-            >
-              Önceki
-            </button>
-            <button
-              onClick={sonrakiFilm}
-              className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
-            >
-              Sıradaki
-            </button>
+            {sira !== 0 && (
+              <button
+                onClick={oncekiFilm}
+                className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
+              >
+                Önceki
+              </button>
+            )}
+            {sira !== movies.length - 1 && (
+              <button
+                onClick={sonrakiFilm}
+                className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
+              >
+                Sıradaki
+              </button>
+            )}
 
             <button
               onClick={favoriyeEkle}
@@ -71,16 +76,8 @@ function App() {
             >
               Listeme ekle
             </button>
-
-            <button
-              onClick={favoridenCikart}
-              className="select-none px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white"
-            >
-              Listemden çıkart
-            </button>
           </div>
         </Route>
-
         <Route path="/listem">
           <div>
             {favMovies.map((movie) => (
