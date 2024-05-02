@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import { Switch, Route, NavLink } from 'react-router-dom';
 import Movie from './components/Movie.jsx';
 import FavMovie from './components/FavMovie.jsx';
@@ -19,12 +19,10 @@ function App() {
   function sonrakiFilm() {
     dispatch(nextMovie());
   }
-  function favoriyeEkle() {
-    dispatch(addToFavs());
+  function favoriyeEkle(id) {
+    dispatch(addToFavs(id));
   }
-  function favoridenCikart() {
-    dispatch(deleteFromFavs(id));
-  }
+  
   function oncekiFilm() {
     dispatch(previousMovie());
   }

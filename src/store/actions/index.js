@@ -10,9 +10,10 @@ export const nextMovie = () => {
 export const addToFavs = () => {
   return {
     type: ADD_TO_FAVS,
+    
   };
 };
-export const deleteFromFavs = () => {
+export const deleteFromFavs = (id) => {
   return {
     type: DELETE_FROM_FAVS,
     payload: id,
